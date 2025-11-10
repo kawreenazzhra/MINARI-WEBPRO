@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  background-image: url('asset/image_2025-11-09_18-53-51.png'); /* ganti sesuai file kamu */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; /* biar gambar tetap saat scroll */
+  min-height: 100vh;
+}
+
+
+/* ===== Layout ===== */
+.login-section {
+  margin-top: 80px;               /* jarak dari navbar */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 16px 80px;        /* ruang atas & bawah */
+  min-height: calc(100vh - 70px);
+}
+
+.login-box {
+  background-color: #FCF9ED;
+  border: 2px solid #1e1e1e;      /* konsisten, 2px cukup */
+  width: 100%;
+  max-width: 520px;               /* responsif */
+  padding: 32px;
+  border-radius: 20px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.login-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+/* ===== Form ===== */
+.form-label { font-weight: 600; }
+input.form-control {
+  background-color: #fff;
+  border: 2px solid #FBAF99;
+  border-radius: 10px;
+  font-size: 14px;
+  height: 44px;
+  padding: 8px 12px;
+}
+input.form-control:focus {
+  border-color: #F07260;
+  box-shadow: 0 0 0 .25rem rgba(240,114,96,.2);
+  outline: none;
+}
+
+/* toggle password eye */
+.toggle-pass {
+  position: absolute;
+  right: 10px; top: 36px;
+  height: 28px; min-width: 36px;
+  border: 0; border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Buttons */
+.login-btn {
+  background-color: #F8B6A8;
+  color: #fff;
+  font-weight: 700;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  height: 42px;
+  transition: background-color .25s ease, transform .1s ease;
+}
+.login-btn:hover { background-color: #f39d8c; }
+.login-btn:active { transform: scale(.99); }
+
+.google-btn {
+  background-color: #fff;
+  border: 2px solid #FBAF99;
+  color: #333;
+  font-weight: 600;
+  border-radius: 10px;
+  height: 42px;
+  transition: all .25s ease;
+}
+.google-btn:hover { background-color: #fff; color: #000; }
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .login-box { padding: 24px; }
+  input.form-control { height: 42px; }
+}
