@@ -26,7 +26,7 @@ body {
 
 .product {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 72px;                          /* sebelumnya 200px: terlalu lebar */
   max-width: 1100px;
@@ -54,11 +54,48 @@ body {
   font-size: 40px;
   font-weight: 700;
   line-height: 1.2;
+  margin-top: 45px;
 }
 
-.details p {
-  font-size: 24px;
-}
+.details p.price {
+      font-size: 24px;
+    }
+
+    .details .desc {
+      font-size: 15px;
+      color: #6b6b6b;
+      line-height: 1.6;
+    }
+
+    .category {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 15px;
+    }
+
+    .category span {
+      background-color: #fcd8c4;
+      color: #914d2b;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      width: fit-content;
+      font-weight: 500;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 20px;
+      color: #f18135;
+    }
+
+    .rating span {
+      color: #555;
+      font-size: 14px;
+    }
 
 /* ===== Quantity ===== */
 .quantity {
@@ -107,6 +144,78 @@ body {
   background-color: #f9e4db;
   transform: translateY(-1px);
 }
+
+  .review-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 80px 80px;
+    }
+
+    .review-section h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .review-box {
+      border: 1px solid #000;
+      padding: 20px;
+      border-radius: 4px;
+      display: flex;
+      gap: 15px;
+      background-color: #fff;
+    }
+
+    .review-box .profile {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: #eee;
+    }
+
+    .review-box .profile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .review-content {
+      flex: 1;
+    }
+
+    .review-content h4 {
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .stars {
+      color: #f18135;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    .lihat-lainnya {
+      font-size: 14px;
+      color: #7a4b3a;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .lihat-lainnya:hover {
+      text-decoration: underline;
+    }
 
 /* ===== Responsive ===== */
 @media (max-width: 992px) {
@@ -163,21 +272,52 @@ body {
   <main class="container">
     <div class="product">
       <img src="WhatsApp Image 2025-11-10 at 10.41.14_0a45d35c.jpg" alt="Yellow Shirt">
-      <div class="details">
-        <h2>Yellow shirt</h2>
-        <p>Rp. 175.000,00</p>
+      <div class="mdet">
+        <div class="details">
+          <h2>Yellow shirt</h2>
+          <h4>Rp. 175.000,00</h4>
+          <div>
+            <h4>Description</h4>
+            <p class="desc">Kemeja wanita berlengan pendek berbahan katun lembut dengan motif kotak-kotak kuning, nyaman dipakai untuk gaya kasual sehari-hari.</p>
+          </div>
 
-        <div class="quantity">
-          <button id="minus">-</button>
-          <span id="count">0</span>
-          <button id="plus">+</button>
+          <div class="category">
+            <h4>Category</h4>
+            <span>Shirt and Blouse</span>
+          </div>
+          
+          <div >
+            Rating </br>
+            <span class="rating">★★★★☆</span>
+          </div>
+
+          <div class="quantity">
+            <button id="minus">-</button>
+            <span id="count">0</span>
+            <button id="plus">+</button>
+          </div>
+
+          <button class="add-to-cart">Add to chart</button>
         </div>
-
-        <button class="add-to-cart">Add to chart</button>
       </div>
     </div>
   </main>
 
+  <section class="review-section">
+    <h3>Review</h3>
+    <div class="review-box">
+      <div class="profile">
+        <!-- nanti kamu isi foto profil -->
+        <img src="profile.jpg" alt="Profile">
+      </div>
+      <div class="review-content">
+        <h4>e*****s</h4>
+        <div class="stars">★★★★☆</div>
+        <p class="review-text">Bahannya gak kaku dan bagus banget! Warna sesuai foto juga, pengiriman cepat. Bakal order lagi.</p>
+        <a class="lihat-lainnya" href="review.html">Lihat lainnya >></a>
+      </div>
+    </div>
+  </section>
 
   <script>
     // Quantity counter
