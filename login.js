@@ -54,16 +54,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       location.href = 'landing.html'; // user biasa tetap ke landing
     }
+
+    if (!localStorage.getItem('userData')) {
+      localStorage.setItem('userData', JSON.stringify({
+        name: 'Aliyah Rahma',
+        phone: '08123456789',
+        email: 'aliyah@gmail.com',
+        birth: '2004-06-15',
+        address: 'Jl. Mawar No. 10, Bandung'
+      }));
+    }
+
   });
 });
-
-localStorage.setItem('role', 'user');
-localStorage.setItem('userData', JSON.stringify({
-  name: 'Aliyah Rahma',
-  phone: '08123456789',
-  email: 'aliyah@gmail.com',
-  birth: '2004-06-15',
-  address: 'Jl. Mawar No. 10, Bandung'
-}));
-localStorage.setItem('role', 'admin');
 
