@@ -1,5 +1,5 @@
 function redirectToLogin() {
-    window.location.href = 'loginadmin.html';
+    window.location.href = 'login.html';
 }
 
 function redirectToDashboard() {
@@ -15,22 +15,32 @@ function redirectToLandingAdmin() {
 }
 
 function handleLogoClick() {
-    const isLoggedIn = localStorage.getItem('adminLoggedIn');
-    if (isLoggedIn) {
-        redirectToLandingAdmin();
+    const role = localStorage.getItem('role');
+    if (role === 'admin') {
+        redirectToDashboard();
     } else {
         redirectToLanding();
     }
 }
 
+function isAdmin() {
+    return getRole() === 'admin';
+}
+
+function isUser() {
+    return getRole() === 'user';
+}
+
 function handlePlusIconClick() {
-    const isLoggedIn = localStorage.getItem('adminLoggedIn');
-    if (isLoggedIn) {
+    const role = localStorage.getItem('role');
+
+    if (role === 'admin') {
         redirectToDashboard();
     } else {
         redirectToLogin();
     }
 }
+
 
 function initializeSeparateNavigation() {
     const logos = document.querySelectorAll('.logo, .logo img');
@@ -56,21 +66,38 @@ function initializeSeparateNavigation() {
 
 function handleLogin(event) {
     event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    
+
+    const usernameEl = document.getElementById('username');
+    const passwordEl = document.getElementById('password');
+
+    if (!usernameEl || !passwordEl) {
+        alert('Form login tidak lengkap (username/password tidak ditemukan).');
+        return;
+    }
+
+    const username = usernameEl.value.trim();
+    const password = passwordEl.value.trim();
+
+    // Kredensial contoh
     if (username === 'admin' && password === 'admin') {
-        localStorage.setItem('adminLoggedIn', 'true');
-        window.location.href = 'landingpageadmin.html';
-    } else {
-        alert('Invalid username or password. Try: admin/admin');
+        localStorage.setItem('role', 'admin');
+        window.location.href = ADMIN_DASHBOARD;
+        return;
+    }
+
+    if (username === 'user' && password === 'user') {
+        localStorage.setItem('role', 'user');
+        window.location.href = LANDING_PAGE;
+        return;
     }
 }
 
+
 function handleLogout() {
-    localStorage.removeItem('adminLoggedIn');
-    redirectToLogin();
+    localStorage.removeItem('role');     // hapus role admin/user
+    window.location.href = 'landing.html'; // kembali ke landing guest
 }
+
 
 function addLogoutButton() {
     const navbarIcons = document.querySelector('.navbar-icons');
@@ -82,8 +109,7 @@ function addLogoutButton() {
         logoutIcon.style.marginLeft = '25px';
         logoutIcon.addEventListener('click', function() {
             if (confirm('Are you sure you want to logout?')) {
-                localStorage.removeItem('adminLoggedIn');
-                window.location.href = 'loginadmin.html';
+                handleLogout();
             }
         });
         navbarIcons.appendChild(logoutIcon);
@@ -149,20 +175,23 @@ function initializeSidebar() {
 }
 
 function checkLoginStatus() {
-    const isLoggedIn = localStorage.getItem('adminLoggedIn');
+    const role = localStorage.getItem('role');
     const currentPage = window.location.pathname.split('/').pop();
+
     const adminPages = [
         'dashboardadmin.html', 'productadmin.html', 'categoriesadmin.html',
-        'ordersadmin.html', 'customersadmin.html', 'reviewadmin.html', 'promotionsadmin.html',
-        'editcategoriesadmin.html', 'addcategoriesadmin.html', 'addpromotionadmin.html'
+        'ordersadmin.html', 'customersadmin.html', 'reviewadmin.html',
+        'promotionsadmin.html', 'addpromotionadmin.html'
     ];
-    
-    if (adminPages.includes(currentPage) && !isLoggedIn) {
-        redirectToLogin();
+
+    if (adminPages.includes(currentPage) && role !== 'admin') {
+        window.location.href = 'login.html'; // login kamu yg asli
         return false;
     }
+
     return true;
 }
+
 
 function handleResize() {
     adjustSidebarHeight();
@@ -222,6 +251,8 @@ function handleNavbarScroll() {
 
 document.addEventListener('DOMContentLoaded', function() {
     if (!checkLoginStatus()) return;
+
+
     initializeUI();
     initializeSeparateNavigation();
     handleNavbarScroll();

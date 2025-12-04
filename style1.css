@@ -240,6 +240,7 @@ body {
     color: #000;
     border: none;
     text-align: left;
+    vertical-align: middle;
 }
 
 .table-custom td {
@@ -257,6 +258,24 @@ body {
 .table-custom tbody tr:last-child td {
     border-bottom: none;
 }
+
+
+.table-custom td.action-icons {
+    vertical-align: middle;      /* jaga sejajar dengan baris lain */
+    text-align: center;          /* center horizontal */
+}
+
+
+.table-custom td.action-icons {
+    display: flex;
+    justify-content: center;     /* ikon di tengah kolom */
+    align-items: center;         /* sejajar vertikal */
+    gap: 12px;                   /* jarak antar ikon */
+}
+.table-custom th:last-child {
+    text-align: center;
+}
+
 
 .product-img {
     width: 50px;
@@ -315,7 +334,9 @@ body {
 
 .action-icons {
     display: flex;
-    gap: 12px;
+    gap: 8px;              /* jarak antar tombol */
+    align-items: center;   /* ini yang bikin sejajar vertikal */
+    justify-content: center;
 }
 
 .action-icons i {
@@ -1331,3 +1352,6 @@ input:focus,
         border: 1px solid #dee2e6;
     }
 }
+
+
+

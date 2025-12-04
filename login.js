@@ -49,7 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('displayName', role === NavbarRole.Role.ADMIN ? 'Admin' : 'User');
 
     // Arahkan ke landing (navbar akan auto-render sesuai role)
-    location.href = 'landing.html';
+    if (role === NavbarRole.Role.ADMIN) {
+      location.href = 'dashboardadmin.html'; // ganti dengan nama file dashboard admin kamu
+    } else {
+      location.href = 'landing.html'; // user biasa tetap ke landing
+    }
   });
 });
 
