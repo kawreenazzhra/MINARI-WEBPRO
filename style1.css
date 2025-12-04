@@ -260,18 +260,6 @@ body {
 }
 
 
-.table-custom td.action-icons {
-    vertical-align: middle;      /* jaga sejajar dengan baris lain */
-    text-align: center;          /* center horizontal */
-}
-
-
-.table-custom td.action-icons {
-    display: flex;
-    justify-content: center;     /* ikon di tengah kolom */
-    align-items: center;         /* sejajar vertikal */
-    gap: 12px;                   /* jarak antar ikon */
-}
 .table-custom th:last-child {
     text-align: center;
 }
@@ -332,23 +320,25 @@ body {
     color: #856404;
 }
 
-.action-icons {
-    display: flex;
-    gap: 8px;              /* jarak antar tombol */
-    align-items: center;   /* ini yang bikin sejajar vertikal */
-    justify-content: center;
+.table-custom td.action-icons {
+    text-align: center;
 }
 
 .action-icons i {
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s;
-    padding: 8px;
+    width: 36px;
+    height: 36px;
     border-radius: 6px;
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    margin: 0 4px;   
 }
 
 .action-icons i:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .action-icons .fa-edit {
@@ -368,13 +358,14 @@ body {
 
 .action-icons a {
     text-decoration: none;
-    padding: 8px;
+    padding: 0px;
     border-radius: 6px;
+    display: inline-block;
     transition: all 0.3s;
 }
 
 .action-icons a:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .stats-grid {
